@@ -1,0 +1,25 @@
+This file outlines the changes made to the plugin for the PHP integration.
+
+All of the code that has been added is heavily commented.  Below is a summary
+of the changes made.
+
+classes\class-object-sync-sf-admin.php
+When the plugin is testing the connection with Salesforce, the records being
+pulled were changed to Campaign records from Contact records.
+
+classes\class-object-sync-sf-salesforce-pull.php
+Added get_unpublished_records function that checks for and removes records that
+are part  of the integration that have been set to unpublish or whose status has
+been set to 'Completed' or 'Canceled'.
+
+classes\class-object-sync-sf-salesforce-push.php
+Commented out code from 1135 to 1400 to prevent the plugin from attempting
+to create new Salesforce records based on the manually created WP events.
+
+classes\class-object-sync-sf-salesforce-select-query.php
+Updated the query used to pull in records from Salesforce to make sure that
+only records that are marked to be published get pulled in.
+
+classes\class-object-sync-sf-wordpress.php
+Updated the post_create function and the post_update function to use the
+polylang plugin to set the language of an event.
